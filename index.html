@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savana Eventos - Seja um Influencer</title>
+    
+    <!-- Meta Tags Essenciais para SEO -->
+    <meta name="description" content="Inscrições abertas para o programa de influencers da Savana Eventos. Junte-se a nós e divulgue as melhores festas de Lavras, MG!">
+    <meta name="keywords" content="influencer, eventos, festas, Lavras, universitário, Savana, parceria, divulgação">
+    <meta name="author" content="Savana Eventos">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:title" content="Savana Eventos - Seja um Influencer">
+    <meta property="og:description" content="Quer ser um parceiro da Savana Eventos? Inscreva-se no nosso programa de influencers e faça parte das melhores festas!">
+    <meta property="og:image" content="https://iili.io/FCvz5DQ.png">
+    <meta property="og:url" content="URL_DO_SEU_SITE_AQUI">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Savana Eventos - Seja um Influencer">
+    <meta name="twitter:description" content="Quer ser um parceiro da Savana Eventos? Inscreva-se no nosso programa de influencers e faça parte das melhores festas!">
+    <meta name="twitter:image" content="https://iili.io/FCvz5DQ.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
+
+    <style>
+        /* Estilos base do corpo */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a; /* Fundo escuro */
+            color: #f0f0f0; /* Cor do texto principal */
+        }
+
+        /* Cor principal da marca */
+        :root {
+            --cor-principal: #E711F0;
+        }
+
+        /* Fundo de partículas animado */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Estilo customizado para inputs */
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(231, 17, 240, 0.3);
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--cor-principal);
+            box-shadow: 0 0 15px rgba(231, 17, 240, 0.4);
+            outline: none;
+        }
+
+        /* Animação de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-form {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="py-12 px-4">
+
+    <!-- Fundo de Partículas -->
+    <div id="tsparticles"></div>
+
+    <main class="w-full max-w-3xl mx-auto">
+        <!-- Logo -->
+        <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-28 mx-auto mb-6">
+        
+        <!-- Conteúdo do Formulário -->
+        <div id="form-container" class="fade-in-form">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold uppercase" style="color: var(--cor-principal);">Seja um Influencer</h1>
+                <p class="text-gray-300 mt-2 max-w-xl mx-auto">Faça parte do nosso time e ajude a criar as melhores experiências em Lavras!</p>
+            </div>
+
+            <!-- Formulário -->
+            <form id="influencer-form" class="bg-black/70 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-gray-800 space-y-6">
+                
+                <!-- Informações Pessoais -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fullName" class="block text-sm font-semibold mb-2 text-gray-200">Nome Completo</label>
+                        <input type="text" id="fullName" name="fullName" required class="w-full p-3 rounded-lg text-white form-input">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold mb-2 text-gray-200">Email de Contato</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg text-white form-input">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div>
+                        <label for="phone" class="block text-sm font-semibold mb-2 text-gray-200">Telefone / WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full p-3 rounded-lg text-white form-input">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-semibold mb-2 text-gray-200">Cidade / Estado</label>
+                        <input type="text" id="city" name="city" required placeholder="Ex: Lavras, MG" class="w-full p-3 rounded-lg text-white form-input">
+                    </div>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div class="border-t border-gray-700 pt-6">
+                     <h2 class="font-bold text-xl text-center mb-4" style="color: var(--cor-principal);">Suas Redes Sociais</h2>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                           <label for="instagram" class="block text-sm font-semibold mb-2 text-gray-200">@Instagram</label>
+                           <input type="text" id="instagram" name="instagram" required placeholder="@seuusuario" class="w-full p-3 rounded-lg text-white form-input">
+                        </div>
+                         <div>
+                           <label for="instagramFollowers" class="block text-sm font-semibold mb-2 text-gray-200">Nº de Seguidores (Instagram)</label>
+                           <input type="number" id="instagramFollowers" name="instagramFollowers" required class="w-full p-3 rounded-lg text-white form-input">
+                        </div>
+                        <div>
+                           <label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-200">@TikTok (Opcional)</label>
+                           <input type="text" id="tiktok" name="tiktok" placeholder="@seuusuario" class="w-full p-3 rounded-lg text-white form-input">
+                        </div>
+                        <div>
+                           <label for="tiktokFollowers" class="block text-sm font-semibold mb-2 text-gray-200">Nº de Seguidores (TikTok)</label>
+                           <input type="number" id="tiktokFollowers" name="tiktokFollowers" class="w-full p-3 rounded-lg text-white form-input">
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Perguntas Adicionais -->
+                 <div class="border-t border-gray-700 pt-6 space-y-6">
+                     <div>
+                        <label for="audience" class="block text-sm font-semibold mb-2 text-gray-200">Descreva seu público principal (idade, gênero, interesses, etc.)</label>
+                        <textarea id="audience" name="audience" rows="3" required class="w-full p-3 rounded-lg text-white form-input"></textarea>
+                     </div>
+                      <div>
+                        <label for="experience" class="block text-sm font-semibold mb-2 text-gray-200">Já divulgou outros eventos ou marcas? Se sim, quais?</label>
+                        <textarea id="experience" name="experience" rows="3" required class="w-full p-3 rounded-lg text-white form-input"></textarea>
+                     </div>
+                     <div>
+                        <label for="why" class="block text-sm font-semibold mb-2 text-gray-200">Por que você quer ser um influencer da Savana?</label>
+                        <textarea id="why" name="why" rows="3" required class="w-full p-3 rounded-lg text-white form-input"></textarea>
+                     </div>
+                 </div>
+
+                <!-- Botão de Envio -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full text-white font-bold text-lg p-4 rounded-lg transition-all duration-300" style="background-color: var(--cor-principal); box-shadow: 0 0 20px rgba(231, 17, 240, 0.5);">
+                        Enviar Inscrição
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Mensagem de Sucesso (escondida por padrão) -->
+        <div id="success-message" class="hidden text-center bg-black/70 backdrop-blur-sm p-8 md:p-12 rounded-2xl shadow-lg border border-gray-800">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--cor-principal);">Inscrição Enviada!</h2>
+            <p class="text-gray-200 text-lg">Obrigado pelo seu interesse! Analisaremos seu perfil e entraremos em contato em breve pelo email fornecido.</p>
+            <p class="text-gray-400 mt-6">Enquanto isso, siga a gente no Instagram!</p>
+        </div>
+
+    </main>
+
+    <!-- Scripts JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa as partículas animadas
+            tsParticles.load("tsparticles", {
+                fpsLimit: 60,
+                particles: {
+                    number: { value: 40, density: { enable: true, value_area: 800 }},
+                    color: { value: "#E711F0" },
+                    shape: { type: "circle" },
+                    opacity: {
+                        value: 0.4,
+                        random: true,
+                        anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
+                    },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#E711F0",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "grab" }, resize: true },
+                    modes: { grab: { distance: 140, line_opacity: 0.5 } }
+                },
+                retina_detect: true,
+            });
+
+            // Lógica do Formulário
+            const form = document.getElementById('influencer-form');
+            const formContainer = document.getElementById('form-container');
+            const successMessage = document.getElementById('success-message');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Impede o envio real do formulário
+                
+                // Animação de saída para o formulário
+                formContainer.style.transition = 'opacity 0.5s, transform 0.5s';
+                formContainer.style.opacity = '0';
+                formContainer.style.transform = 'translateY(-20px)';
+
+                // Mostra a mensagem de sucesso após a animação
+                setTimeout(() => {
+                    formContainer.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    // Animação de entrada para a mensagem
+                    successMessage.style.animation = 'fadeIn 0.5s ease-out';
+                    window.scrollTo(0, 0); // Rola para o topo da página
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
