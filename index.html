@@ -67,16 +67,26 @@
             background: transparent;
         }
         
+        /* NOVO ESTILO PARA A NOTIFICAÇÃO (TOAST) */
         #toast-message {
-            position: fixed; bottom: -100px; left: 50%;
-            transform: translateX(-50%);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
             background-color: var(--cor-principal);
-            color: white; padding: 1rem 1.5rem; border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            transition: bottom 0.5s ease-in-out;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             z-index: 999;
         }
-        #toast-message.show { bottom: 30px; }
+        #toast-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
         
         .fade-out {
             opacity: 0;
@@ -120,6 +130,7 @@
                             <label for="email" class="block text-sm font-semibold mb-2 text-gray-400">Email de Contacto</label>
                             <input type="email" id="email" name="Email" class="form-input" placeholder="seu@email.com" required>
                         </div>
+                        <!-- PLACEHOLDERS CORRIGIDOS -->
                         <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@usuario"></div>
                         <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@usuario"></div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -176,9 +187,10 @@
                 }
             });
 
+            // LÓGICA DA NOTIFICAÇÃO (TOAST) ATUALIZADA
             formOverlay.addEventListener('click', () => {
                 toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
+                setTimeout(() => toast.classList.remove('show'), 2000); // Mostra por 2 segundos
             });
             
             function updatePlatformFields() {
@@ -209,7 +221,7 @@
                         setTimeout(() => {
                             formWrapper.classList.add('hidden');
                             thankYouWrapper.classList.remove('hidden');
-                        }, 500); // Espera a animação de fade-out terminar
+                        }, 500);
                     } else {
                         throw new Error('Network response was not ok.');
                     }
@@ -221,7 +233,6 @@
             }
             form.addEventListener("submit", handleSubmit);
 
-            // Lógica para o botão "Enviar Nova Proposta"
             resetButton.addEventListener('click', () => {
                 form.reset();
                 platformContainer.querySelectorAll('.active').forEach(b => b.classList.remove('active'));
