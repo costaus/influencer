@@ -15,11 +15,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
+                <!-- 
+            ██████╗  █████╗ ███╗   ██╗
+            ██╔══██╗██╔══██╗████╗  ██║
+            ██║  ██║███████║██╔██╗ ██║
+            ██║  ██║██╔══██║██║╚██╗██║
+            ██████╔╝██║  ██║██║ ╚████║
+            ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝
+            -->
+
     <style>
         :root {
             --cor-principal: #E711F0;
             --cor-fundo: #0a0a0a;
-            --cor-input: rgba(31, 31, 31, 0.7); /* Ligeiramente transparente */
+            --cor-input: rgba(31, 31, 31, 0.6); 
             --cor-borda: #444;
             --cor-texto: #f0f0f0;
         }
@@ -31,15 +40,13 @@
         }
         #tsparticles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
-        /* ESTILO "FLUTUANTE" - SEM CAIXA DE FUNDO */
         .floating-container {
-            backdrop-filter: blur(2px); /* Mantém um leve desfoque para legibilidade */
+            backdrop-filter: blur(2px);
             transition: opacity 0.5s, transform 0.5s;
         }
         
-        /* Legibilidade do texto sobre o fundo animado */
-        .text-shadow-strong {
-             text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+        .text-shadow-subtle {
+             text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
         }
 
         .form-input, .form-select {
@@ -52,7 +59,7 @@
             box-shadow: 0 0 0 3px rgba(231, 17, 240, 0.3);
         }
         .platform-button {
-            background-color: rgba(31, 31, 31, 0.5);
+            background-color: rgba(31, 31, 31, 0.4);
             border: 2px solid var(--cor-borda); border-radius: 12px; padding: 0.75rem;
             cursor: pointer; transition: all 0.2s ease-in-out; opacity: 0.7;
         }
@@ -81,25 +88,22 @@
         .fade-out { opacity: 0; transform: scale(0.95); pointer-events: none; }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
-
+<body>
     <div id="tsparticles"></div>
     <div id="toast-message">Selecione uma plataforma para começar.</div>
 
-    <!-- Container do Formulário (começa visível) -->
     <div id="form-wrapper" class="w-full max-w-2xl">
         <header class="text-center mb-6">
             <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-28 mx-auto">
         </header>
         <main class="floating-container p-6 md:p-10">
             <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-[var(--cor-principal)] text-shadow-strong">Proposta de Parceria</h1>
-                <!-- FRASE ATUALIZADA -->
-                <p class="text-gray-200 mt-4 text-shadow-strong">Se você tem presença, atitude e vontade de fazer parte de algo grande, essa vaga é sua. Bora fazer barulho juntos?</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-[var(--cor-principal)] text-shadow-subtle">Proposta de Parceria</h1>
+                <p class="text-gray-200 mt-4 text-shadow-subtle">Se você tem presença, atitude e vontade de fazer parte de algo grande, essa vaga é sua. Bora fazer barulho juntos?</p>
             </div>
             <form id="partnership-form" class="space-y-6">
                 <div>
-                    <label class="block text-sm font-semibold mb-2 text-gray-400 text-center w-full text-shadow-strong">Selecione as suas principais plataformas</label>
+                    <label class="block text-sm font-semibold mb-2 text-gray-400 text-center w-full text-shadow-subtle">Selecione as suas principais plataformas</label>
                     <div class="flex justify-center gap-6 platform-selector">
                         <button type="button" class="platform-button" data-platform="instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Logo Instagram" class="w-10 h-10 object-contain pointer-events-none"></button>
                         <button type="button" class="platform-button" data-platform="tiktok"><img src="https://iili.io/F5GLeEJ.png" alt="Logo TikTok" class="w-10 h-10 object-contain pointer-events-none"></button>
@@ -110,18 +114,18 @@
                     <fieldset id="form-fields" disabled class="space-y-6">
                         <input type="hidden" name="Plataformas Selecionadas" id="selected-platforms">
                         <div>
-                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Nome Completo</label>
+                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">Nome Completo</label>
                             <input type="text" id="name" name="Nome" class="form-input" placeholder="O seu nome" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Email de Contacto</label>
+                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">Email de Contacto</label>
                             <input type="email" id="email" name="Email" class="form-input" placeholder="seu@email.com" required>
                         </div>
-                        <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@usuario"></div>
-                        <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@usuario"></div>
+                        <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@usuario"></div>
+                        <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@usuario"></div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div><label for="followers" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Faixa de Seguidores</label><select id="followers" name="Seguidores" class="form-select" required><option value="" disabled selected>Na sua rede principal</option><option value="<5k">Menos de 5.000</option><option value="5k-10k">5.001 - 10.000</option><option value="10k-20k">10.001 - 20.000</option><option value="20k-30k">20.001 - 30.000</option><option value=">30k">Mais de 30.000</option></select></div>
-                            <div><label for="city" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">A sua Cidade / Região</label><input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required></div>
+                            <div><label for="followers" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">Faixa de Seguidores</label><select id="followers" name="Seguidores" class="form-select" required><option value="" disabled selected>Na sua rede principal</option><option value="<5k">Menos de 5.000</option><option value="5k-10k">5.001 - 10.000</option><option value="10k-20k">10.001 - 20.000</option><option value="20k-30k">20.001 - 30.000</option><option value=">30k">Mais de 30.000</option></select></div>
+                            <div><label for="city" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-subtle">A sua Cidade / Região</label><input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required></div>
                         </div>
                     </fieldset>
                 </div>
@@ -133,9 +137,8 @@
     <!-- Container de Agradecimento (começa escondido) -->
     <div id="thank-you-wrapper" class="hidden w-full max-w-lg text-center">
          <main class="floating-container p-8 md:p-12">
-            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 mx-auto mb-6">
-            <h1 class="text-4xl font-bold text-[#E711F0] text-shadow-strong mb-4">Proposta Recebida!</h1>
-            <p class="text-gray-200 mb-8 text-shadow-strong">Obrigado pelo seu interesse! A nossa equipa irá analisar a sua proposta e entrará em contacto assim que possível.</p>
+            <h1 class="text-4xl font-bold text-[#E711F0] text-shadow-subtle mb-4">Proposta Recebida!</h1>
+            <p class="text-gray-200 mb-8 text-shadow-subtle">Obrigado pelo seu interesse! A nossa equipa irá analisar a sua proposta e entrará em contacto assim que possível.</p>
             <button id="reset-button" class="bg-[#E711F0] hover:scale-105 hover:shadow-[0_0_20px_rgba(231,17,240,0.5)] transition-all inline-block text-white font-bold py-3 px-8 rounded-lg">
                 Enviar Nova Proposta
             </button>
