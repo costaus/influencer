@@ -5,24 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savana Eventos - Parcerias Estratégicas</title>
     
-    <!-- Meta Tags -->
     <meta name="description" content="Seja um influenciador parceiro da Savana Eventos e faça parte das melhores festas universitárias de Lavras. Cadastre-se agora!">
-    <meta name="keywords" content="parceria, influencer, influenciador, lavras, festa, universitário, savana eventos">
-    <meta name="author" content="Savana Eventos">
     <meta property="og:title" content="Savana Eventos - Parcerias Estratégicas">
-    <meta property="og:description" content="Quer ser um parceiro da Savana Eventos? Cadastre-se e venha fazer história com a gente!">
     <meta property="og:image" content="https://iili.io/FCvz5DQ.png">
-    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
     <style>
@@ -33,200 +23,127 @@
             --cor-input: #1f1f1f;
             --cor-borda: #333;
             --cor-texto: #f0f0f0;
-            --cor-texto-label: #a0a0a0;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 2rem 1rem;
+            transition: background-color 0.5s;
         }
-
-        #tsparticles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .form-container {
+        #tsparticles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .form-container, .thank-you-container {
             background-color: var(--cor-container);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(231, 17, 240, 0.2);
             border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            max-width: 650px;
-            width: 100%;
-            padding: 2.5rem;
+            transition: opacity 0.5s, transform 0.5s;
         }
-
-        .form-input, .form-select, .form-textarea {
-            background-color: var(--cor-input);
-            border: 1px solid var(--cor-borda);
-            color: var(--cor-texto);
-            border-radius: 10px;
-            padding: 0.85rem 1rem;
-            width: 100%;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            font-size: 1rem;
+        .form-input, .form-select {
+            background-color: var(--cor-input); border: 1px solid var(--cor-borda); color: var(--cor-texto);
+            border-radius: 10px; padding: 0.85rem 1rem; width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s; font-size: 1rem;
         }
-
-        .form-input::placeholder, .form-textarea::placeholder { color: #6b7280; }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--cor-principal);
+        .form-input:focus, .form-select:focus {
+            outline: none; border-color: var(--cor-principal);
             box-shadow: 0 0 0 3px rgba(231, 17, 240, 0.3);
         }
-
-        .form-label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--cor-texto-label); }
-        
-        .platform-selector { display: flex; justify-content: center; gap: 1.5rem; }
         .platform-button {
-            background-color: transparent; border: 2px solid var(--cor-borda); border-radius: 12px;
-            padding: 0.75rem; cursor: pointer; transition: all 0.2s ease-in-out; opacity: 0.6;
+            border: 2px solid var(--cor-borda); border-radius: 12px; padding: 0.75rem;
+            cursor: pointer; transition: all 0.2s ease-in-out; opacity: 0.6;
         }
         .platform-button.active {
             border-color: var(--cor-principal); box-shadow: 0 0 15px rgba(231, 17, 240, 0.5);
             transform: scale(1.1); opacity: 1;
         }
-        .platform-button img { width: 40px; height: 40px; object-fit: contain; pointer-events: none; }
-
         .submit-button {
-            background: linear-gradient(90deg, #E711F0, #8A2BE2); color: white; font-weight: 700; font-size: 1.1rem;
-            padding: 0.85rem 1.5rem; border-radius: 10px; border: none; cursor: pointer;
-            transition: all 0.2s; width: 100%;
+            background: linear-gradient(90deg, #E711F0, #8A2BE2);
+            transition: all 0.2s;
         }
-        .submit-button:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(231, 17, 240, 0.4); }
         .submit-button:disabled { background: #555; cursor: not-allowed; }
-
-
-        .collapsible {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s ease-out;
+        
+        #form-fields:disabled { pointer-events: none; opacity: 0.4; }
+        #form-block-overlay {
+            position: absolute; inset: 0; z-index: 10;
+            background: transparent;
         }
-        .collapsible.expanded {
-            grid-template-rows: 1fr;
+        
+        #toast-message {
+            position: fixed; bottom: -100px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--cor-principal);
+            color: white; padding: 1rem 1.5rem; border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: bottom 0.5s ease-in-out;
+            z-index: 999;
         }
-        .collapsible > div {
-            overflow: hidden;
+        #toast-message.show { bottom: 30px; }
+        
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
 
     <div id="tsparticles"></div>
+    <div id="toast-message">Selecione uma plataforma para começar.</div>
 
-    <main class="w-full flex flex-col items-center">
-        <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-28 mx-auto mb-6">
-        
-        <div class="form-container">
+    <!-- Container do Formulário (começa visível) -->
+    <div id="form-wrapper" class="w-full max-w-2xl">
+        <header class="text-center mb-6">
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-28 mx-auto">
+        </header>
+        <main class="form-container p-6 md:p-10">
             <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold" style="color: var(--cor-principal);">Proposta de Parceria</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-[var(--cor-principal)]">Proposta de Parceria</h1>
                 <p class="text-gray-300 mt-2">Estamos à procura de influenciadores para criar experiências incríveis.</p>
             </div>
-
             <form id="partnership-form" class="space-y-6">
-                
                 <div>
-                    <label class="form-label text-center w-full">Selecione as suas principais plataformas</label>
-                    <div id="platform-container" class="platform-selector">
-                        <button type="button" class="platform-button" data-platform="instagram">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Logo Instagram" onerror="this.style.display='none'">
-                        </button>
-                        <button type="button" class="platform-button" data-platform="tiktok">
-                            <img src="https://iili.io/F5GLeEJ.png" alt="Logo TikTok" onerror="this.style.display='none'">
-                        </button>
+                    <label class="block text-sm font-semibold mb-2 text-gray-400 text-center w-full">Selecione as suas principais plataformas</label>
+                    <div class="flex justify-center gap-6 platform-selector">
+                        <button type="button" class="platform-button" data-platform="instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Logo Instagram" class="w-10 h-10 object-contain pointer-events-none"></button>
+                        <button type="button" class="platform-button" data-platform="tiktok"><img src="https://iili.io/F5GLeEJ.png" alt="Logo TikTok" class="w-10 h-10 object-contain pointer-events-none"></button>
                     </div>
                 </div>
-                
-                <input type="hidden" name="Plataformas Selecionadas" id="selected-platforms">
-
-                <div>
-                    <label for="name" class="form-label">Nome Completo</label>
-                    <input type="text" id="name" name="Nome" class="form-input" placeholder="O seu nome" required>
-                </div>
-                
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center">
-                        <label for="email" class="form-label mb-0">Contacto</label>
-                        <button type="button" id="add-phone-button" class="text-xs text-cyan-400 hover:text-cyan-300 transition-colors font-medium">
-                            + Adicionar telefone
-                        </button>
-                    </div>
-                    <input type="email" id="email" name="Email" class="form-input" placeholder="seu@email.com">
-                    
-                    <div id="phone-field" class="collapsible">
-                         <div class="pt-2">
-                            <input type="tel" id="phone" name="Telefone" class="form-input" placeholder="Telefone / WhatsApp">
+                <div class="relative">
+                    <div id="form-block-overlay"></div>
+                    <fieldset id="form-fields" disabled class="space-y-6">
+                        <input type="hidden" name="Plataformas Selecionadas" id="selected-platforms">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-400">Nome Completo</label>
+                            <input type="text" id="name" name="Nome" class="form-input" placeholder="O seu nome" required>
                         </div>
-                    </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-400">Email de Contacto</label>
+                            <input type="email" id="email" name="Email" class="form-input" placeholder="seu@email.com" required>
+                        </div>
+                        <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@utilizador"></div>
+                        <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@utilizador_tiktok"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div><label for="followers" class="block text-sm font-semibold mb-2 text-gray-400">Faixa de Seguidores</label><select id="followers" name="Seguidores" class="form-select" required><option value="" disabled selected>Na sua rede principal</option><option value="<5k">Menos de 5.000</option><option value="5k-10k">5.001 - 10.000</option><option value="10k-20k">10.001 - 20.000</option><option value="20k-30k">20.001 - 30.000</option><option value=">30k">Mais de 30.000</option></select></div>
+                            <div><label for="city" class="block text-sm font-semibold mb-2 text-gray-400">A sua Cidade / Região</label><input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required></div>
+                        </div>
+                    </fieldset>
                 </div>
-
-                <div id="instagram-field" class="hidden">
-                    <label for="instagram" class="form-label">O seu @ no Instagram</label>
-                    <input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@utilizador">
-                </div>
-                
-                <div id="tiktok-field" class="hidden">
-                    <label for="tiktok" class="form-label">O seu @ no TikTok</label>
-                    <input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@utilizador_tiktok">
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="followers" class="form-label">Faixa de Seguidores</label>
-                        <select id="followers" name="Seguidores" class="form-select" required>
-                            <option value="" disabled selected>Na sua rede principal</option>
-                            <option value="<5k">Menos de 5.000</option>
-                            <option value="5k-10k">5.001 - 10.000</option>
-                            <option value="10k-20k">10.001 - 20.000</option>
-                            <option value="20k-30k">20.001 - 30.000</option>
-                            <option value=">30k">Mais de 30.000</option>
-                        </select>
-                    </div>
-                     <div>
-                        <label for="city" class="form-label">A sua Cidade / Região</label>
-                        <input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="niche" class="form-label">Qual o seu principal nicho de conteúdo?</label>
-                    <select id="niche" name="Nicho" class="form-select" required>
-                        <option value="" disabled selected>Selecione o seu nicho</option>
-                        <option value="lifestyle">Lifestyle e Rotina</option>
-                        <option value="humor">Humor e Comédia</option>
-                        <option value="moda">Moda e Beleza</option>
-                        <option value="musica">Música e Festas</option>
-                        <option value="universitario">Vida Universitária</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="reason" class="form-label">Porque gostaria de ser parceiro(a) da Savana?</label>
-                    <textarea id="reason" name="Motivo" class="form-textarea" rows="3" placeholder="Conte-nos um pouco sobre o seu interesse..."></textarea>
-                </div>
-
-                <div>
-                    <button type="submit" id="submit-button" class="submit-button">Enviar Proposta de Parceria</button>
-                </div>
-                <p id="form-status" class="text-center h-4"></p>
+                <div><button type="submit" id="submit-button" class="submit-button w-full text-white font-bold py-3 px-4 rounded-lg" disabled>Enviar Proposta de Parceria</button></div>
             </form>
-        </div>
-        <footer class="text-center mt-8 text-gray-500 text-sm">
-            <p>&copy; 2025 Savana Eventos. Todos os direitos reservados.</p>
-        </footer>
-    </main>
+        </main>
+    </div>
+
+    <!-- Container de Agradecimento (começa escondido) -->
+    <div id="thank-you-wrapper" class="hidden w-full max-w-lg text-center">
+         <main class="thank-you-container p-8 md:p-12">
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 mx-auto mb-6">
+            <h1 class="text-4xl font-bold text-[#E711F0] mb-4">Proposta Recebida!</h1>
+            <p class="text-gray-300 mb-8">Obrigado pelo seu interesse! A nossa equipa irá analisar a sua proposta e entrará em contacto assim que possível.</p>
+            <button id="reset-button" class="bg-[#E711F0] hover:scale-105 hover:shadow-[0_0_20px_rgba(231,17,240,0.5)] transition-all inline-block text-white font-bold py-3 px-8 rounded-lg">
+                Enviar Nova Proposta
+            </button>
+        </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     <script>
@@ -235,19 +152,33 @@
                 fpsLimit: 60, particles: { number: { value: 40 }, color: { value: "#E711F0" }, shape: { type: "circle" }, opacity: { value: 0.4, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } }, size: { value: 3, random: true }, line_linked: { enable: true, distance: 150, color: "#E711F0", opacity: 0.2, width: 1 }, move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" } }, interactivity: { events: { onhover: { enable: true, mode: "grab" }, resize: true }, modes: { grab: { distance: 140, line_opacity: 0.5 } } }, retina_detect: true,
             });
 
-            // --- Lógica Visual (não mexe no envio) ---
-            const platformContainer = document.getElementById('platform-container');
-            const addPhoneButton = document.getElementById('add-phone-button');
-            const phoneField = document.getElementById('phone-field');
+            const formWrapper = document.getElementById('form-wrapper');
+            const thankYouWrapper = document.getElementById('thank-you-wrapper');
+            const form = document.getElementById('partnership-form');
+            const formFields = document.getElementById('form-fields');
+            const formOverlay = document.getElementById('form-block-overlay');
+            const platformContainer = document.querySelector('.platform-selector');
             const instagramField = document.getElementById('instagram-field');
             const tiktokField = document.getElementById('tiktok-field');
+            const submitButton = document.getElementById('submit-button');
+            const toast = document.getElementById('toast-message');
+            const resetButton = document.getElementById('reset-button');
 
             platformContainer.addEventListener('click', (e) => {
                 const button = e.target.closest('.platform-button');
                 if (button) {
                     button.classList.toggle('active');
+                    const anyActive = platformContainer.querySelector('.platform-button.active');
+                    formFields.disabled = !anyActive;
+                    submitButton.disabled = !anyActive;
+                    formOverlay.classList.toggle('hidden', anyActive);
                     updatePlatformFields();
                 }
+            });
+
+            formOverlay.addEventListener('click', () => {
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
             });
             
             function updatePlatformFields() {
@@ -256,41 +187,17 @@
                 instagramField.classList.toggle('hidden', !instagramActive);
                 tiktokField.classList.toggle('hidden', !tiktokActive);
             }
-            
-            addPhoneButton.addEventListener('click', () => {
-                phoneField.classList.toggle('expanded');
-                if (phoneField.classList.contains('expanded')) {
-                    addPhoneButton.textContent = '- Remover telefone';
-                } else {
-                    addPhoneButton.textContent = '+ Adicionar telefone';
-                    document.getElementById('phone').value = '';
-                }
-            });
-
-            updatePlatformFields();
-
-            // --- Lógica de Envio com JavaScript ---
-            const form = document.getElementById('partnership-form');
-            const formStatus = document.getElementById('form-status');
-            const submitButton = document.getElementById('submit-button');
 
             async function handleSubmit(event) {
                 event.preventDefault();
+                submitButton.disabled = true;
+                submitButton.textContent = 'A enviar...';
                 
                 const data = new FormData(event.target);
-                
-                const selected = [];
-                if(document.querySelector('.platform-button[data-platform="instagram"]').classList.contains('active')) selected.push('Instagram');
-                if(document.querySelector('.platform-button[data-platform="tiktok"]').classList.contains('active')) selected.push('TikTok');
+                const selected = Array.from(platformContainer.querySelectorAll('.active')).map(b => b.dataset.platform);
                 data.set('Plataformas Selecionadas', selected.join(', '));
 
-
-                formStatus.textContent = "A enviar...";
-                formStatus.className = "text-center h-4 text-gray-400";
-                submitButton.disabled = true;
-
                 try {
-                    // LINK CORRETO INSERIDO AQUI
                     const response = await fetch('https://formspree.io/f/xldnzdje', {
                         method: 'POST',
                         body: data,
@@ -298,26 +205,35 @@
                     });
 
                     if (response.ok) {
-                        formStatus.textContent = "Proposta enviada com sucesso!";
-                        formStatus.className = "text-center h-4 text-green-400";
-                        form.reset();
-                        document.querySelectorAll('.platform-button.active').forEach(b => b.classList.remove('active'));
-                        if (phoneField.classList.contains('expanded')) phoneField.classList.remove('expanded');
-                        updatePlatformFields();
+                        formWrapper.classList.add('fade-out');
                         setTimeout(() => {
-                           submitButton.disabled = false;
-                           formStatus.textContent = "";
-                        }, 4000);
+                            formWrapper.classList.add('hidden');
+                            thankYouWrapper.classList.remove('hidden');
+                        }, 500); // Espera a animação de fade-out terminar
                     } else {
-                        throw new Error('Ocorreu um problema ao enviar o formulário.');
+                        throw new Error('Network response was not ok.');
                     }
                 } catch (error) {
-                    formStatus.textContent = "Erro ao enviar. Tente novamente.";
-                    formStatus.className = "text-center h-4 text-red-500";
+                    alert('Ocorreu um erro ao enviar a proposta. Por favor, tente novamente.');
                     submitButton.disabled = false;
+                    submitButton.textContent = 'Enviar Proposta de Parceria';
                 }
             }
             form.addEventListener("submit", handleSubmit);
+
+            // Lógica para o botão "Enviar Nova Proposta"
+            resetButton.addEventListener('click', () => {
+                form.reset();
+                platformContainer.querySelectorAll('.active').forEach(b => b.classList.remove('active'));
+                formFields.disabled = true;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviar Proposta de Parceria';
+                formOverlay.classList.remove('hidden');
+                updatePlatformFields();
+
+                thankYouWrapper.classList.add('hidden');
+                formWrapper.classList.remove('hidden', 'fade-out');
+            });
         });
     </script>
 </body>
