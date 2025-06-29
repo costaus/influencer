@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savana Eventos - Parcerias Estratégicas</title>
     
-    <meta name="description" content="Seja um influenciador parceiro da Savana Eventos e faça parte das melhores festas universitárias de Lavras. Cadastre-se agora!">
+    <meta name="description" content="Se você tem presença, atitude e vontade de fazer parte de algo grande, essa vaga é sua. Bora fazer barulho juntos?">
     <meta property="og:title" content="Savana Eventos - Parcerias Estratégicas">
     <meta property="og:image" content="https://iili.io/FCvz5DQ.png">
 
@@ -15,15 +15,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
-    <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
-
     <style>
         :root {
             --cor-principal: #E711F0;
             --cor-fundo: #0a0a0a;
-            --cor-container: rgba(18, 18, 18, 0.8);
-            --cor-input: #1f1f1f;
-            --cor-borda: #333;
+            --cor-input: rgba(31, 31, 31, 0.7); /* Ligeiramente transparente */
+            --cor-borda: #444;
             --cor-texto: #f0f0f0;
         }
         body {
@@ -33,13 +30,18 @@
             transition: background-color 0.5s;
         }
         #tsparticles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .form-container, .thank-you-container {
-            background-color: var(--cor-container);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(231, 17, 240, 0.2);
-            border-radius: 20px;
+        
+        /* ESTILO "FLUTUANTE" - SEM CAIXA DE FUNDO */
+        .floating-container {
+            backdrop-filter: blur(2px); /* Mantém um leve desfoque para legibilidade */
             transition: opacity 0.5s, transform 0.5s;
         }
+        
+        /* Legibilidade do texto sobre o fundo animado */
+        .text-shadow-strong {
+             text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
         .form-input, .form-select {
             background-color: var(--cor-input); border: 1px solid var(--cor-borda); color: var(--cor-texto);
             border-radius: 10px; padding: 0.85rem 1rem; width: 100%;
@@ -50,8 +52,9 @@
             box-shadow: 0 0 0 3px rgba(231, 17, 240, 0.3);
         }
         .platform-button {
+            background-color: rgba(31, 31, 31, 0.5);
             border: 2px solid var(--cor-borda); border-radius: 12px; padding: 0.75rem;
-            cursor: pointer; transition: all 0.2s ease-in-out; opacity: 0.6;
+            cursor: pointer; transition: all 0.2s ease-in-out; opacity: 0.7;
         }
         .platform-button.active {
             border-color: var(--cor-principal); box-shadow: 0 0 15px rgba(231, 17, 240, 0.5);
@@ -64,37 +67,18 @@
         .submit-button:disabled { background: #555; cursor: not-allowed; }
         
         #form-fields:disabled { pointer-events: none; opacity: 0.4; }
-        #form-block-overlay {
-            position: absolute; inset: 0; z-index: 10;
-            background: transparent;
-        }
+        #form-block-overlay { position: absolute; inset: 0; z-index: 10; background: transparent; }
         
-        /* NOVO ESTILO PARA A NOTIFICAÇÃO (TOAST) */
         #toast-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
+            position: fixed; top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0.9);
-            background-color: var(--cor-principal);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            z-index: 999;
+            background-color: var(--cor-principal); color: white; padding: 1rem 1.5rem; border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; z-index: 999;
         }
-        #toast-message.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
+        #toast-message.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         
-        .fade-out {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
-        }
+        .fade-out { opacity: 0; transform: scale(0.95); pointer-events: none; }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
@@ -107,14 +91,15 @@
         <header class="text-center mb-6">
             <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-28 mx-auto">
         </header>
-        <main class="form-container p-6 md:p-10">
+        <main class="floating-container p-6 md:p-10">
             <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-[var(--cor-principal)]">Proposta de Parceria</h1>
-                <p class="text-gray-300 mt-2">Se você tem presença, atitude e vontade de fazer parte de algo grande, essa vaga é sua. Bora fazer barulho juntos?</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-[var(--cor-principal)] text-shadow-strong">Proposta de Parceria</h1>
+                <!-- FRASE ATUALIZADA -->
+                <p class="text-gray-200 mt-4 text-shadow-strong">Se você tem presença, atitude e vontade de fazer parte de algo grande, essa vaga é sua. Bora fazer barulho juntos?</p>
             </div>
             <form id="partnership-form" class="space-y-6">
                 <div>
-                    <label class="block text-sm font-semibold mb-2 text-gray-400 text-center w-full">Selecione as suas principais plataformas</label>
+                    <label class="block text-sm font-semibold mb-2 text-gray-400 text-center w-full text-shadow-strong">Selecione as suas principais plataformas</label>
                     <div class="flex justify-center gap-6 platform-selector">
                         <button type="button" class="platform-button" data-platform="instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Logo Instagram" class="w-10 h-10 object-contain pointer-events-none"></button>
                         <button type="button" class="platform-button" data-platform="tiktok"><img src="https://iili.io/F5GLeEJ.png" alt="Logo TikTok" class="w-10 h-10 object-contain pointer-events-none"></button>
@@ -125,19 +110,18 @@
                     <fieldset id="form-fields" disabled class="space-y-6">
                         <input type="hidden" name="Plataformas Selecionadas" id="selected-platforms">
                         <div>
-                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-400">Nome Completo</label>
+                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Nome Completo</label>
                             <input type="text" id="name" name="Nome" class="form-input" placeholder="O seu nome" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-400">Email de Contacto</label>
+                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Email de Contacto</label>
                             <input type="email" id="email" name="Email" class="form-input" placeholder="seu@email.com" required>
                         </div>
-                        <!-- PLACEHOLDERS CORRIGIDOS -->
-                        <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@usuario"></div>
-                        <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@usuario"></div>
+                        <div id="instagram-field" class="hidden"><label for="instagram" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">O seu @ no Instagram</label><input type="text" id="instagram" name="Instagram" class="form-input" placeholder="@usuario"></div>
+                        <div id="tiktok-field" class="hidden"><label for="tiktok" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">O seu @ no TikTok</label><input type="text" id="tiktok" name="TikTok" class="form-input" placeholder="@usuario"></div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div><label for="followers" class="block text-sm font-semibold mb-2 text-gray-400">Faixa de Seguidores</label><select id="followers" name="Seguidores" class="form-select" required><option value="" disabled selected>Na sua rede principal</option><option value="<5k">Menos de 5.000</option><option value="5k-10k">5.001 - 10.000</option><option value="10k-20k">10.001 - 20.000</option><option value="20k-30k">20.001 - 30.000</option><option value=">30k">Mais de 30.000</option></select></div>
-                            <div><label for="city" class="block text-sm font-semibold mb-2 text-gray-400">A sua Cidade / Região</label><input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required></div>
+                            <div><label for="followers" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">Faixa de Seguidores</label><select id="followers" name="Seguidores" class="form-select" required><option value="" disabled selected>Na sua rede principal</option><option value="<5k">Menos de 5.000</option><option value="5k-10k">5.001 - 10.000</option><option value="10k-20k">10.001 - 20.000</option><option value="20k-30k">20.001 - 30.000</option><option value=">30k">Mais de 30.000</option></select></div>
+                            <div><label for="city" class="block text-sm font-semibold mb-2 text-gray-400 text-shadow-strong">A sua Cidade / Região</label><input type="text" id="city" name="Cidade" class="form-input" placeholder="Ex: Lavras - MG" required></div>
                         </div>
                     </fieldset>
                 </div>
@@ -148,10 +132,10 @@
 
     <!-- Container de Agradecimento (começa escondido) -->
     <div id="thank-you-wrapper" class="hidden w-full max-w-lg text-center">
-         <main class="thank-you-container p-8 md:p-12">
+         <main class="floating-container p-8 md:p-12">
             <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 mx-auto mb-6">
-            <h1 class="text-4xl font-bold text-[#E711F0] mb-4">Proposta Recebida!</h1>
-            <p class="text-gray-300 mb-8">Obrigado pelo seu interesse! A nossa equipa irá analisar a sua proposta e entrará em contacto assim que possível.</p>
+            <h1 class="text-4xl font-bold text-[#E711F0] text-shadow-strong mb-4">Proposta Recebida!</h1>
+            <p class="text-gray-200 mb-8 text-shadow-strong">Obrigado pelo seu interesse! A nossa equipa irá analisar a sua proposta e entrará em contacto assim que possível.</p>
             <button id="reset-button" class="bg-[#E711F0] hover:scale-105 hover:shadow-[0_0_20px_rgba(231,17,240,0.5)] transition-all inline-block text-white font-bold py-3 px-8 rounded-lg">
                 Enviar Nova Proposta
             </button>
@@ -162,7 +146,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             tsParticles.load("tsparticles", {
-                fpsLimit: 60, particles: { number: { value: 40 }, color: { value: "#E711F0" }, shape: { type: "circle" }, opacity: { value: 0.4, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } }, size: { value: 3, random: true }, line_linked: { enable: true, distance: 150, color: "#E711F0", opacity: 0.2, width: 1 }, move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" } }, interactivity: { events: { onhover: { enable: true, mode: "grab" }, resize: true }, modes: { grab: { distance: 140, line_opacity: 0.5 } } }, retina_detect: true,
+                fpsLimit: 60, particles: { number: { value: 50, density: { enable: true, area: 800 } }, color: { value: "#E711F0" }, shape: { type: "circle" }, opacity: { value: 0.5, random: true }, size: { value: 3, random: true }, links: { enable: true, distance: 150, color: "#E711F0", opacity: 0.2, width: 1 }, move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, outModes: { default: "out" } } }, interactivity: { events: { onhover: { enable: true, mode: "grab" }, resize: true }, modes: { grab: { distance: 140, links: { opacity: 0.5 } } } }, detectRetina: true,
             });
 
             const formWrapper = document.getElementById('form-wrapper');
@@ -189,10 +173,9 @@
                 }
             });
 
-            // LÓGICA DA NOTIFICAÇÃO (TOAST) ATUALIZADA
             formOverlay.addEventListener('click', () => {
                 toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2000); // Mostra por 2 segundos
+                setTimeout(() => toast.classList.remove('show'), 2000); 
             });
             
             function updatePlatformFields() {
@@ -224,9 +207,7 @@
                             formWrapper.classList.add('hidden');
                             thankYouWrapper.classList.remove('hidden');
                         }, 500);
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
+                    } else { throw new Error('Network response was not ok.'); }
                 } catch (error) {
                     alert('Ocorreu um erro ao enviar a proposta. Por favor, tente novamente.');
                     submitButton.disabled = false;
